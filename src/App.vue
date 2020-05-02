@@ -1,19 +1,17 @@
 <template>
   <div id="app">
       <el-container>
-        <Aside></Aside>
         <router-view></router-view>
       </el-container>
   </div>
 </template>
 
 <script>
-import Aside from "./common/aside.vue";
+// import Aside from "./common/aside.vue";
 
 export default {
   name: "App",
   components: {
-    Aside
   }
 };
 </script>
