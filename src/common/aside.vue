@@ -1,32 +1,26 @@
 <template>
   <el-aside class="side-left">
-    <el-menu>
-      <div :v-for="item in menus" :key="key">
-        <el-submenu>
+    <el-menu class="aside-menu">
+      <template v-for="menu in menus">
+        <el-submenu :key="menu.title" :index="menu.title">
           <template slot="title">
-            <i class="el-icon-message"></i>
-            {{row.title}}
+            <i :class="menu.icon"></i>
+            {{menu.title}}
           </template>
           <el-menu-item-group>
-            <template slot="title">分组一</template>
-            <el-menu-item index="1-1" @click="jumpTo('/form')">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
+              <template v-for="submenu in menu.items">
+                <el-menu-item :key="submenu.title" :index="submenu.title" @click="jumpTo(submenu.path)">{{submenu.title}}</el-menu-item>
+              </template>
           </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项4-1</el-menu-item>
-          </el-submenu>
         </el-submenu>
-      </div>
+      </template>
     </el-menu>
   </el-aside>
 </template>
 <style>
 .side-left {
   width: 200;
+  height: 100vh;
   text-align: left;
 }
 .el-header {
@@ -37,6 +31,10 @@
 
 .el-aside {
   color: #333;
+}
+
+.aside-menu{
+    height: 100vh;
 }
 
 .right-side {
