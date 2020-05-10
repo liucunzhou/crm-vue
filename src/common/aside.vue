@@ -19,9 +19,10 @@
 </template>
 <style>
 .side-left {
-  width: 200;
+  width: 200px;
   height: 100vh;
   text-align: left;
+   background:#303133
 }
 .el-header {
   background-color: #b3c0d1;
@@ -35,6 +36,7 @@
 
 .aside-menu{
     height: 100vh;
+   
 }
 
 .right-side {
