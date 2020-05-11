@@ -1,5 +1,10 @@
 <template>
     <el-main>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>客资管理</el-breadcrumb-item>
+        <el-breadcrumb-item>我的客资</el-breadcrumb-item>
+      </el-breadcrumb>
       <el-table :data="tableData"  class="table100">>
         <template v-for="row in tableFields">
           <template v-if="row.id != 'operation'">

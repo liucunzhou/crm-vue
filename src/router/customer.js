@@ -1,6 +1,7 @@
 const MemberList = r => require.ensure([], () => r(require('../pages/customer/member/index.vue')), 'MemberList');
 const MemberCreate = r => require.ensure([], () => r(require('../pages/customer/member/create.vue')), 'MemberCreate');
 const MemberEdit = r => require.ensure([], () => r(require('../pages/customer/member/edit.vue')), 'MemberEdit');
+const MemberSchedule = r => require.ensure([], () => r(require('../pages/customer/member/schedule.vue')), 'MemberSchedule');
 
 const VisitList = r => require.ensure([], () => r(require('../pages/customer/visit/index.vue')), 'VisitList');
 const VisitCreate = r => require.ensure([], () => r(require('../pages/customer/visit/create.vue')), 'VistCreate');
@@ -19,6 +20,11 @@ export default [
         path: '/customer/create',
         name: 'MemberCreate',
         component: MemberCreate
+    },
+    {
+        path: '/customer/schedule',
+        name: 'MemberSchedule',
+        component: MemberSchedule
     },
     {
         path: '/customer/edit',

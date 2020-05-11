@@ -19,7 +19,7 @@
               <el-menu-item index="2-2">选项2</el-menu-item>
               <el-menu-item index="2-3">选项3</el-menu-item>
             </el-submenu>
-            <el-menu-item index="3">消息中心</el-menu-item>
+            <el-menu-item index="3" @click="jumpTo('/customer/schedule')">档期管理</el-menu-item>
             <el-submenu index="4" class="menu-user">
               <template slot="title">您好,管理员</template>
               <el-menu-item index="4-1">个人中心</el-menu-item>
@@ -45,6 +45,9 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
+    },
+    jumpTo(router) {
+      this.$router.push(router);
     }
   }
 };
@@ -66,6 +69,9 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+.el-breadcrumb {
+  margin-bottom: 18px;
 }
 .side-left {
   width: 230px;
