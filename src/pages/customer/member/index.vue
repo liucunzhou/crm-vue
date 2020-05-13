@@ -30,11 +30,6 @@
 }
 </style>
 <script>
-import Axios from "axios";
-import Qs from "qs";
-Axios.defaults.headers['Content-Type'] = "application/x-www-form-urlencoded;charset=UTF-8";
-Axios.defaults.transformRequest = [obj => Qs.stringify(obj)];
-
 export default {
   name: "Main",
   data() {
@@ -43,8 +38,7 @@ export default {
       tableData: []
     };
   },
-  created: function(options) {
-    console.log('加载了',options);
+  created: function() {
     this.getDataList();
   },
   methods: {
@@ -54,8 +48,8 @@ export default {
     },
     getDataList() {
         let that = this;
-        let url = 'http://dress.net/api/customer.customer/index';
-        Axios.post(url, {}).then(function (response) {
+        let url =  this.host + '/api/customer.customer/index';
+        this.axios.post(url, {}).then(function (response) {
           let result = response.data;
           that.tableFields = result.data.fields;
           that.tableData = result.data.list;

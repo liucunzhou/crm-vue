@@ -91,10 +91,21 @@ export default {
       menus: menus
     };
   },
+  created: function() {
+    this.getDataList();
+  },
   methods: {
     jumpTo(router) {
       this.$router.push(router);
-    }
+    },
+    getDataList() {
+        let that = this;
+        let url =  this.host + '/api/auth.menu/index';
+        this.axios.post(url, {}).then(function (response) {
+          let result = response.data;
+          that.menus = result.data.menus;
+        });
+    },
   }
 };
 </script>

@@ -1,31 +1,63 @@
 <template>
     <el-main>
-      <el-table :data="tableData">
-        <el-table-column prop="date" label="日期" width="140"></el-table-column>
-        <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-        <el-table-column prop="address" label="地址"></el-table-column>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>组织架构</el-breadcrumb-item>
+        <el-breadcrumb-item>员工管理</el-breadcrumb-item>
+      </el-breadcrumb>
+      <el-table :data="tableData"  class="table100">>
+        <template v-for="row in tableFields">
+          <template v-if="row.id != 'operation'">
+            <el-table-column :key="row.id" :prop="row.id" :label="row.label" :width="row.width"></el-table-column>
+          </template>
+          <template v-else>
+             <el-table-column :key="row.id" :label="row.lable" width="row.width">
+              <template slot-scope="scope">
+                <template v-for="btn in row.buttons">
+                  <el-button :key="btn.label" @click="actions(scope.row, btn.action)" :type="btn.type" :size="btn.size">{{btn.label}}</el-button>
+                </template>
+              </template>
+            </el-table-column>
+          </template>
+        </template>
       </el-table>
     </el-main>
 </template>
 
-<style></style>
+<style>
+.table-100{
+  width: 100%;
+}
+</style>
 <script>
 export default {
   name: "Main",
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄"
-    };
     return {
-      tableData: Array(15).fill(item)
+      tableFields: [],
+      tableData: []
     };
+  },
+  created: function() {
+    this.getDataList();
   },
   methods: {
     jumpTo(router) {
       alert(router);
       this.$router.push(router);
+    },
+    getDataList() {
+        let that = this;
+        let url =  this.host + '/api/organize.user/index';
+        this.axios.post(url, {}).then(function (response) {
+          let result = response.data;
+          that.tableFields = result.data.fields;
+          that.tableData = result.data.list;
+        });
+    },
+    actions(row, action) {
+      console.log(row, action);
+      alert('aa');
     }
   }
 };

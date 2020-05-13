@@ -2,8 +2,8 @@
     <el-main>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>组织架构</el-breadcrumb-item>
-        <el-breadcrumb-item>部门管理</el-breadcrumb-item>
+        <el-breadcrumb-item>客资管理</el-breadcrumb-item>
+        <el-breadcrumb-item>我的客资</el-breadcrumb-item>
       </el-breadcrumb>
       <el-table :data="tableData"  class="table100">>
         <template v-for="row in tableFields">
@@ -48,7 +48,7 @@ export default {
     },
     getDataList() {
         let that = this;
-        let url =  this.host + '/api/organize.department/index';
+        let url =  this.host + '/api/customer.customer/promoter';
         this.axios.post(url, {}).then(function (response) {
           let result = response.data;
           that.tableFields = result.data.fields;

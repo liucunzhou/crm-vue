@@ -4,14 +4,19 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/style/theme/index.css'
 import router from './router';
-import Axios from "axios";
-import Qs from "qs";
+import axios from "axios";
+import VueAxios from 'vue-axios'
+import qs from "qs";
 
-Axios.defaults.headers['Content-Type'] = "application/x-www-form-urlencoded;charset=UTF-8";
-Axios.defaults.transformRequest = [obj => Qs.stringify(obj)];
+axios.defaults.headers['Content-Type'] = "application/x-www-form-urlencoded;charset=UTF-8";
+axios.defaults.transformRequest = [obj => qs.stringify(obj)];
+Vue.use(VueAxios, axios);
+Vue.use(qs);
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
+
+Vue.prototype.host = 'http://dress.net';
 
 new Vue({
     router,
