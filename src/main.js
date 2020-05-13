@@ -16,7 +16,7 @@ Vue.use(qs);
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
-Vue.prototype.host = 'http://crm.reactphp.club';
+Vue.prototype.host = 'http://a.reactphp.club';
 
 new Vue({
     router,
